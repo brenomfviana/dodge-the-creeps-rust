@@ -1,8 +1,8 @@
-use gdnative::*;
+use gdnative::prelude::*;
 
-/// Game state struct.
 #[derive(NativeClass)]
 #[inherit(Node)]
+/// Game state struct.
 pub struct GameState {
   score: u16,
 }
@@ -10,25 +10,25 @@ pub struct GameState {
 #[methods]
 impl GameState {
   /// Initialize game state.
-  fn _init(_owner: gdnative::Node) -> Self {
+  fn new(_owner: &Node) -> Self {
     GameState { score: 0 }
   }
 
-  /// Return the player score.
   #[export]
-  fn score(&self, _owner: gdnative::Node) -> u16 {
+  /// Return the player score.
+  pub fn score(&self, _owner: &Node) -> u16 {
     self.score
   }
 
-  /// Increment player score.
   #[export]
-  fn increment_score(&mut self, _owner: gdnative::Node) {
+  /// Increment player score by one point.
+  pub fn increment_score(&mut self, _owner: &Node) {
     self.score += 1;
   }
 
-  /// Reset the game state.
   #[export]
-  fn reset(&mut self, _owner: gdnative::Node) {
+  /// Reset the game state.
+  pub fn reset(&mut self, _owner: &Node) {
     self.score = 0;
   }
 }

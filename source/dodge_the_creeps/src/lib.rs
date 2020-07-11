@@ -1,7 +1,8 @@
-use gdnative::*;
+use gdnative::prelude::*;
 mod game_state;
 
-fn init(handle: gdnative::init::InitHandle) {
+/// Expose all Rust code for Godot.
+fn init(handle: InitHandle) {
   handle.add_class::<game_state::GameState>();
 }
 
