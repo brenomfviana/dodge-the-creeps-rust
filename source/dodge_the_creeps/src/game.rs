@@ -42,8 +42,8 @@ impl GameHandler {
       .and_then(|hud| hud.map(|x, o| x.show_game_over(&*o)).ok())
       .unwrap_or_else(|| godot_print!("Unable to get hud"));
     // Run death sound
-  	unsafe { owner.get_typed_node::<AudioStreamPlayer, _>("Music") }.stop();
-  	unsafe { owner.get_typed_node::<AudioStreamPlayer, _>("Death") }
+    unsafe { owner.get_typed_node::<AudioStreamPlayer, _>("Music") }.stop();
+    unsafe { owner.get_typed_node::<AudioStreamPlayer, _>("Death") }
       .play(0.0);
   }
 
@@ -73,8 +73,8 @@ impl GameHandler {
     // Start the start timer
     unsafe { owner.get_typed_node::<Timer, _>("StartTimer") }.start(0.0);
     // Run main music
-  	unsafe { owner.get_typed_node::<AudioStreamPlayer, _>("Music") }.play(0.0);
-  	unsafe { owner.get_typed_node::<AudioStreamPlayer, _>("Death") }.stop();
+    unsafe { owner.get_typed_node::<AudioStreamPlayer, _>("Music") }.play(0.0);
+    unsafe { owner.get_typed_node::<AudioStreamPlayer, _>("Death") }.stop();
   }
 
   #[export]

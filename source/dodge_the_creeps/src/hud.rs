@@ -33,8 +33,8 @@ impl HUD {
   pub fn show_message(&self, owner: &CanvasLayer, text: String) {
     // Get message label
     let label = unsafe { owner.get_typed_node::<Label, _>("MessageLabel") };
-  	label.set_text(text);
-  	label.show();
+    label.set_text(text);
+    label.show();
     // Start message timer
     unsafe { owner.get_typed_node::<Timer, _>("MessageTimer") }.start(0.0);
   }
@@ -50,8 +50,8 @@ impl HUD {
     unsafe { owner.get_typed_node::<Button, _>("StartButton") }.show();
     // Show game title
     let label = unsafe { owner.get_typed_node::<Label, _>("MessageLabel") };
-  	label.set_text("Dodge the Creeps!");
-  	label.show();
+    label.set_text("Dodge the Creeps!");
+    label.show();
   }
 
   #[export]

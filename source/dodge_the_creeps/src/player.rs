@@ -101,7 +101,7 @@ impl Player {
   pub fn start(&self, owner: &Area2D, pos: Vector2) {
     // Reset to default initial position
     owner.set_global_position(pos);
-  	owner.show();
+    owner.show();
     // Enable collision
     unsafe { owner.get_typed_node::<CollisionShape2D, _>("CollisionShape2D") }
       .set_disabled(false);
@@ -111,10 +111,10 @@ impl Player {
   /// The player was hitted and lost the game.
   pub fn on_player_body_entered(&mut self, owner: &Area2D,
     _body: Ref<PhysicsBody2D>) {
-    	// Player disappears after being hit
+      // Player disappears after being hit
       self.can_move = false;
       owner.emit_signal("hit", &[]);
-    	owner.hide();
+      owner.hide();
       // Disable collision
       unsafe { owner.get_typed_node::<CollisionShape2D, _>("CollisionShape2D") }
         .set_deferred("disabled", true);
