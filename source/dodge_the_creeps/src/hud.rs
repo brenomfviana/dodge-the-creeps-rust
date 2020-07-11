@@ -11,26 +11,26 @@ pub struct HUD;
 #[methods]
 impl HUD {
   /// Create a new HUD.
-  fn new(_owner: &CanvasLayer) -> Self {
+  pub fn new(_owner: &CanvasLayer) -> Self {
     HUD
   }
 
   /// Register HUD.
-  fn register_hud(builder: &ClassBuilder<Self>) {
+  pub fn register_hud(builder: &ClassBuilder<Self>) {
     // This signal tells that the start button has been pressed
     builder.add_signal(Signal { name: "start_game", args: &[] });
   }
 
   #[export]
   /// Prepare the HUD.
-  fn _ready(&self, owner: &CanvasLayer) {
+  pub fn _ready(&self, owner: &CanvasLayer) {
     // Hide score label
     unsafe { owner.get_typed_node::<Label, _>("ScoreLabel") }.hide();
   }
 
   #[export]
   /// Show a message.
-  fn show_message(&self, owner: &CanvasLayer, text: String) {
+  pub fn show_message(&self, owner: &CanvasLayer, text: String) {
     // Get message label
     let label = unsafe { owner.get_typed_node::<Label, _>("MessageLabel") };
   	label.set_text(text);
@@ -41,7 +41,7 @@ impl HUD {
 
   #[export]
   /// Show the game over message.
-  fn show_game_over(&self, owner: &CanvasLayer) {
+  pub fn show_game_over(&self, owner: &CanvasLayer) {
     // Show message
     self.show_message(owner, "Game Over".into());
     // Stop message timer
@@ -55,7 +55,7 @@ impl HUD {
   }
 
   #[export]
-  fn update_score(&self, owner: &CanvasLayer, score: u16) {
+  pub fn update_score(&self, owner: &CanvasLayer, score: u16) {
     // Update score label
     unsafe { owner.get_typed_node::<Label, _>("ScoreLabel") }
       .set_text(score.to_string());
@@ -63,7 +63,7 @@ impl HUD {
 
   #[export]
   /// Start the game.
-  fn on_start_button_pressed(&self, owner: &CanvasLayer) {
+  pub fn on_start_button_pressed(&self, owner: &CanvasLayer) {
     // Hide start button
     unsafe { owner.get_typed_node::<Button, _>("StartButton") }.hide();
     // Show score label
@@ -74,7 +74,7 @@ impl HUD {
 
   #[export]
   /// Start the game.
-  fn on_message_timer_timeout(&self, owner: &CanvasLayer) {
+  pub fn on_message_timer_timeout(&self, owner: &CanvasLayer) {
     // Hide start button
     unsafe { owner.get_typed_node::<Label, _>("MessageLabel") }.hide();
   }

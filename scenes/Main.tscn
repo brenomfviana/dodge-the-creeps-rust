@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://scenes/Game.gd" type="Script" id=1]
+[ext_resource path="res://source/game.gdns" type="Script" id=1]
 [ext_resource path="res://scenes/Mob.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=4]
@@ -14,12 +14,15 @@ _data = {
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
-Mob = ExtResource( 2 )
+mob = ExtResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 480.0
 margin_bottom = 720.0
-color = Color( 0.158248, 0.429688, 0.127563, 1 )
+color = Color( 0.0352941, 0.364706, 0.180392, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 
@@ -47,10 +50,10 @@ rotation = 0.00123878
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 
-[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+[node name="Death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 [connection signal="hit" from="Player" to="." method="game_over"]
-[connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
-[connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
-[connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
+[connection signal="timeout" from="MobTimer" to="." method="on_mob_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="on_score_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="on_start_timer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
