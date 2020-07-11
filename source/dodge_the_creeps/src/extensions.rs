@@ -1,3 +1,4 @@
+// From: https://github.com/godot-rust/godot-rust/blob/bddbaedccaa56ce6411db6cb8f74206a01dd1196/examples/dodge_the_creeps/src/extensions.rs
 use gdnative::prelude::*;
 
 pub trait NodeExt {

@@ -22,15 +22,15 @@ impl HUD {
   }
 
   #[export]
-  /// Called every time the node is added to the scene.
-  pub fn _ready(&self, owner: &CanvasLayer) {
+  /// Prepare the HUD.
+  fn _ready(&self, owner: &CanvasLayer) {
     // Hide score label
     unsafe { owner.get_typed_node::<Label, _>("ScoreLabel") }.hide();
   }
 
   #[export]
   /// Show a message.
-  pub fn show_message(&self, owner: &CanvasLayer, text: String) {
+  fn show_message(&self, owner: &CanvasLayer, text: String) {
     // Get message label
     let label = unsafe { owner.get_typed_node::<Label, _>("MessageLabel") };
   	label.set_text(text);
@@ -41,7 +41,7 @@ impl HUD {
 
   #[export]
   /// Show the game over message.
-  pub fn show_game_over(&self, owner: &CanvasLayer) {
+  fn show_game_over(&self, owner: &CanvasLayer) {
     // Show message
     self.show_message(owner, "Game Over".into());
     // Stop message timer
@@ -55,7 +55,7 @@ impl HUD {
   }
 
   #[export]
-  pub fn update_score(&self, owner: &CanvasLayer, score: u16) {
+  fn update_score(&self, owner: &CanvasLayer, score: u16) {
     // Update score label
     unsafe { owner.get_typed_node::<Label, _>("ScoreLabel") }
       .set_text(score.to_string());
@@ -63,7 +63,7 @@ impl HUD {
 
   #[export]
   /// Start the game.
-  pub fn on_start_button_pressed(&self, owner: &CanvasLayer) {
+  fn on_start_button_pressed(&self, owner: &CanvasLayer) {
     // Hide start button
     unsafe { owner.get_typed_node::<Button, _>("StartButton") }.hide();
     // Show score label
@@ -74,7 +74,7 @@ impl HUD {
 
   #[export]
   /// Start the game.
-  pub fn on_message_timer_timeout(&self, owner: &CanvasLayer) {
+  fn on_message_timer_timeout(&self, owner: &CanvasLayer) {
     // Hide start button
     unsafe { owner.get_typed_node::<Label, _>("MessageLabel") }.hide();
   }

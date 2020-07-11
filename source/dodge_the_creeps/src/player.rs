@@ -17,7 +17,7 @@ pub struct Player {
 #[methods]
 impl Player {
   /// Create a new player.
-  pub fn new(_owner: &Area2D) -> Self {
+  fn new(_owner: &Area2D) -> Self {
     Player {
       speed: 400.0, screen_size: Vector2::new(0.0, 0.0), can_move: false
     }
@@ -25,19 +25,19 @@ impl Player {
 
   #[export]
   /// Allow the player to move in the level.
-  pub fn allow_move(&mut self, _owner: &Area2D) {
+  fn allow_move(&mut self, _owner: &Area2D) {
     self.can_move = true;
   }
 
   /// Register the player.
-  pub fn register_player(builder: &ClassBuilder<Self>) {
+  fn register_player(builder: &ClassBuilder<Self>) {
     // The player emit this signal when it collides with an enemy
     builder.add_signal(Signal { name: "hit", args: &[] });
   }
 
   #[export]
   /// Prepare the player.
-  pub fn _ready(&mut self, owner: &Area2D) {
+  fn _ready(&mut self, owner: &Area2D) {
     let viewport = unsafe { owner.get_viewport().unwrap().assume_safe() };
     self.screen_size = viewport.size();
     owner.hide();
@@ -98,7 +98,7 @@ impl Player {
 
   #[export]
   /// Reset the player for a new game.
-  pub fn start(&self, owner: &Area2D, pos: Vector2) {
+  fn start(&self, owner: &Area2D, pos: Vector2) {
     // Reset to default initial position
     owner.set_global_position(pos);
   	owner.show();
@@ -109,7 +109,7 @@ impl Player {
 
   #[export]
   /// The player was hitted and lost the game.
-  pub fn on_player_body_entered(&mut self, owner: &Area2D,
+  fn on_player_body_entered(&mut self, owner: &Area2D,
     _body: Ref<PhysicsBody2D>) {
     	// Player disappears after being hit
       self.can_move = false;
