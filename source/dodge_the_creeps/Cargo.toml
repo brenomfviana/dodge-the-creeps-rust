@@ -1,0 +1,11 @@
+[package]
+name = "dodge_the_creeps"
+version = "0.1.0"
+authors = ["Breno Viana <bmfviana@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+gdnative = "0.8"
+
+[lib]
+crate-type = ["cdylib"]

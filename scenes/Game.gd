@@ -1,7 +1,6 @@
 extends Node
 
 export (PackedScene) var Mob
-var score
 
 func _ready():
 	""" Called every time the node is added to the scene.
@@ -16,11 +15,11 @@ func game_over():
 	$DeathSound.play()
 
 func new_game():
-	score = 0
+	GameState.reset()
 	$Player.start($StartPosition.position)
 	$Player.show()
 	$StartTimer.start()
-	$HUD.update_score(score)
+	$HUD.update_score(GameState.score())
 	$HUD.show_message("Get Ready")
 	$DeathSound.stop()
 	$Music.play()
@@ -31,8 +30,8 @@ func _on_StartTimer_timeout():
 	$Player.started = true
 
 func _on_ScoreTimer_timeout():
-	score += 1
-	$HUD.update_score(score)
+	GameState.increment_score()
+	$HUD.update_score(GameState.score())
 
 func _on_MobTimer_timeout():
 	# Choose a random location on Path2D
